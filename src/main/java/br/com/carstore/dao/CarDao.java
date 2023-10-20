@@ -50,8 +50,9 @@ public class CarDao {
             ResultSet resultSet = preparedStatement.executeQuery();
             List<Car> cars = new ArrayList<>();
             while(resultSet.next()){
+                String carId = resultSet.getString("id");
                 String carName = resultSet.getString("name");
-                Car car = new Car(carName);
+                Car car = new Car(carName,carId);
                 cars.add(car);
             }
             System.out.println("success in select * car");
