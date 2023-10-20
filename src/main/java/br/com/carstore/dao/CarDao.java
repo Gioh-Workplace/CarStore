@@ -2,10 +2,7 @@ package br.com.carstore.dao;
 
 import br.com.carstore.model.Car;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -71,6 +68,23 @@ public class CarDao {
 
     }
 
+    public void deleteCarById(String carId) {
+        String SQL = "DELETE CAR WHERE ID = ?";
 
+        try {
 
-}
+            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+
+            System.out.println("success in database connection");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setString(1, carId);
+            preparedStatement.execute();
+            System.out.println("sucess in delete car with id:" + carId);
+            connection.close();
+
+        } catch (SQLException e) {
+            System.out.println("connection failed");
+        }
+    }
+    }
