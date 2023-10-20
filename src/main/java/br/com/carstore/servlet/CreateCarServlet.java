@@ -25,7 +25,8 @@ public class CreateCarServlet extends HttpServlet {
 
         carDao.createCar(car);
 
-        req.getRequestDispatcher("index.html").forward(req, resp);
+
+        resp.sendRedirect("/find-all-cars");
     }
 
 
